@@ -29,6 +29,7 @@ const info = [
 import { motion } from "framer-motion";
 
 const Contact = () => {
+  
   const [location, setLocation] = useState({ lat: null, lon: null });
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -46,6 +47,7 @@ const Contact = () => {
       setError("Geolocation is not supported by your browser.");
     }
   }, []);
+  console.log(location.lat, location.lon)
 
   const [area, setArea] = useState(null)
   const [tempurature, setTempurature] = useState(null);
@@ -57,7 +59,7 @@ const Contact = () => {
       })
       .then((data) => {
         console.log(data);
-        setTempurature(data.main.temp)
+        setTempurature(data.main?.temp)
         setArea(data.name)
       })
   }, [location, apiKey]);
